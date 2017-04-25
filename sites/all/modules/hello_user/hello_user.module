@@ -1,0 +1,19 @@
+<?php
+
+function hello_user_menu() {
+  $items['success'] = array(
+    'title' => 'Success!',
+    'page callback' => 'say_success',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function say_success() {
+  return '<p>You have successfully registered a new account!</p>';
+}
+
+function hello_user_user_insert($edit, $account, $category) {
+  $_GET['destination'] = 'success';
+}

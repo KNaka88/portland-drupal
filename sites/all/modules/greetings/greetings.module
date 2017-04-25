@@ -1,0 +1,44 @@
+<?php
+
+function greetings_menu() {
+  $items = array();
+  $items['hello_friend'] = array(
+    'title' => 'hello friend',
+    'page callback' => 'say_hello',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['say_goodbye'] = array(
+    'title' => 'Goodbye friend',
+    'page callback' => 'say_goodbye',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function say_hello() {
+    $user_roles = $GLOBALS["user"]->roles;
+    var_dump($GLOBALS["user"]);
+      if(isset($user_roles[3])){//check if administrator
+        return '<p>Welcome Admin</p>';
+      }else if(isset($user_roles[2])){//check if authenticated user
+        return '<p>Welcome Authenticated User</p>';
+      }else{
+        return '<p>Hello my dear friend</p>';
+      }
+}
+
+function say_goodbye() {
+   return '<p>Good bye dear friend</p>';
+}
+
+function greetings_user_login() {
+
+  $_GET['destination'] = 'hello_friend';
+}
+
+function greetings_user_logout() {
+  $_GET['destination'] = 'say_goodbye';
+}

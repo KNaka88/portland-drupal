@@ -1,0 +1,5 @@
+name = Hello User
+description = Successful registration of new user module
+package = Custom
+core = 7.x
+files[] = hello_user.module
